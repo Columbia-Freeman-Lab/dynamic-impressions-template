@@ -1,5 +1,5 @@
 // Imports
-import { jsPsych } from "./init.js";
+import { jsPsych, setComplete } from "./init.js";
 import { config } from "./config.js";
 import * as utils from "./utils.js";
 import * as content from "./content.js";
@@ -18,7 +18,6 @@ async function loadDisruptions() {
 await loadDisruptions();
 
 const startTime = new Date().toLocaleString(); // Records the date and time at the start of the study
-export let complete = false; // This is set to true at the end of the study to indicate completion 
 const timeline = []; // Creates the experiment timeline
 
 // --- Get Prolific ID from URL ---
@@ -207,14 +206,14 @@ const demographicsTrial = {
 
 // This is a critical trial that indicates study completion, prompting the data to be saved
 // It also saves the Prolific ID and start/end time
-const finishedTrial = {
+const completionTrial = {
     type: jsPsychSurvey,
-    survey_json: content.finishedContent,
+    survey_json: content.completionContent,
     data: { trial_name: "info", prolific_id: prolificID, start_time: startTime },
     on_finish: function (data) {
         // Can't add end_time with data: {} because it will calculate time at start
         data.end_time = new Date().toLocaleString();
-        complete = true;
+        setComplete(true);
     },
 };
 
@@ -242,7 +241,7 @@ timeline.push(
     startMessageTrial,
     videoTimeline,
     demographicsTrial,
-    finishedTrial
+    completionTrial
 );
 
 jsPsych.run(timeline);
