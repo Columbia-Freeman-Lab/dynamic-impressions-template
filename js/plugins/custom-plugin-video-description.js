@@ -394,6 +394,7 @@ var jsPsychVideoDescription = (function (jspsych) {
                     if (trial.demo) {
                         // End the demo trial
                         resolve();
+                        return;
                     }
                     if (response_state === "initial") {
                         response_state = "during";
@@ -407,6 +408,7 @@ var jsPsychVideoDescription = (function (jspsych) {
                             rt: rt
                         };
                         resolve(trial_data);
+                        return;
                     }
                     changeState("playing");
                 };
