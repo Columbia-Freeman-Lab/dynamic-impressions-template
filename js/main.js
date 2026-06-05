@@ -1,4 +1,5 @@
-// Imports
+// --- Setup ---
+
 import { jsPsych, setComplete } from "./init.js";
 import { config } from "./config.js";
 import * as utils from "./utils.js";
@@ -19,6 +20,14 @@ await loadDisruptions();
 
 const startTime = new Date().toLocaleString(); // Records the date and time at the start of the study
 const timeline = []; // Creates the experiment timeline
+
+// Prevents modifying numeric answers when scrolling
+document.addEventListener("wheel", function(e) {
+  if (document.activeElement.type === "number") {
+    document.activeElement.blur();
+  }
+});
+
 
 // --- Get Prolific ID from URL ---
 
