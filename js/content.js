@@ -23,7 +23,8 @@ export const screenerContent = {
                 choices: ["Democratic", "Republican", "Independent", "Libertarian", "Green Party", "Other"],
                 isRequired: true
             }
-        ]
+        ],
+    completeText: "Continue",
 };
 
 // --- Instructions ---
@@ -103,13 +104,13 @@ export const instructionsContent = {
                 }
             ]
         }
-    ]
+    ],
+    completeText: "Continue",
 };
 
 // --- Audio Check ---
 export const audioCheckContent = {
     title: "Audio Check",
-    completeText: "Submit",
     elements: [
         {
             type: "panel",
@@ -134,7 +135,8 @@ export const audioCheckContent = {
                 },
             ]
         }
-    ]
+    ],
+    completeText: "Continue",
 };
 
 // --- Rating Impressions ---
@@ -198,7 +200,7 @@ export const ratingContent = {
                 ]
         }
     ],
-
+    completeText: "Continue",
 };
 
 // --- Demographics ---
@@ -240,7 +242,6 @@ export const demographicsContent = {
         },
         {
             title: "Feedback",
-            completeText: "Submit",
             elements:
                 [
                     {
@@ -250,7 +251,8 @@ export const demographicsContent = {
                     }
                 ]
         }
-    ]
+    ],
+    completeText: "Submit",
 };
 
 // --- Completion ---
