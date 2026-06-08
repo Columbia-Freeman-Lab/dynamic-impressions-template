@@ -22,10 +22,10 @@ const startTime = new Date().toLocaleString(); // Records the date and time at t
 const timeline = []; // Creates the experiment timeline
 
 // Prevents modifying numeric answers when scrolling
-document.addEventListener("wheel", function(e) {
-  if (document.activeElement.type === "number") {
-    document.activeElement.blur();
-  }
+document.addEventListener("wheel", function (e) {
+    if (document.activeElement.type === "number") {
+        document.activeElement.blur();
+    }
 });
 
 
@@ -181,6 +181,7 @@ const videoTrial = {
     video_id: jsPsych.timelineVariable("video_id"),
     condition: jsPsych.timelineVariable("condition"),
     debug_logs: config.DEBUG_LOGS,
+    debug_quick: config.DEBUG_QUICK,
     on_start: function (trial) {
         // Parses disruption time if possible
         if (disruptionLookup != null) {

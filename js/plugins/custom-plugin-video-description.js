@@ -106,6 +106,12 @@ var jsPsychVideoDescription = (function (jspsych) {
                 pretty_name: "Debug Logs",
                 default: false,
                 description: "If true, display prints useful for debugging."
+            },
+            debug_quick: {
+                type: jspsych.ParameterType.BOOL,
+                pretty_name: "Debug Quick",
+                default: false,
+                description: "If true, videos end after 5 seconds."
             }
         },
         data: {
@@ -337,6 +343,12 @@ var jsPsychVideoDescription = (function (jspsych) {
                         } else {
                             isDisrupted = false;
                         }
+                    }
+
+                    // End video at 5 seconds if debug_quick is true
+                    if (trial.debug_quick && videoPlayer.currentTime >= 5 && videoPlayer.currentTime < videoPlayer.duration) {
+                        console.log("Test")
+                        videoPlayer.currentTime = videoPlayer.duration;
                     }
                 };
 

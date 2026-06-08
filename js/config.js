@@ -24,7 +24,10 @@ export const config = {
     DEBUG_LOGS: false,
 
     // When enabled, saves data locally
-    DEBUG_SAVE: false
+    DEBUG_SAVE: false,
+
+    // When enabled, videos end at 5 seconds
+    DEBUG_QUICK: false
 };
 
 export const videoLists = [
