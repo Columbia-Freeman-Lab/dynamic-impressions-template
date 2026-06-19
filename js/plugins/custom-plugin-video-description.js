@@ -213,7 +213,7 @@ var jsPsychVideoDescription = (function (jspsych) {
 
                 let descriptorsData = [];
                 let currentTerms = [];
-                let lastPauseTime = -2;
+                let lastPauseTime = -(trial.pause_cooldown / 1000);
                 let isDisrupted = false;
                 let response_state = "initial"; // initial, during, final
 
