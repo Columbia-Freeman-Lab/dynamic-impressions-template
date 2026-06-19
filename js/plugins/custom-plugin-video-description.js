@@ -347,7 +347,7 @@ var jsPsychVideoDescription = (function (jspsych) {
 
                     // End video at 5 seconds if debug_quick is true
                     if (trial.debug_quick && videoPlayer.currentTime >= 5 && videoPlayer.currentTime < videoPlayer.duration) {
-                        console.log("Test")
+                        if (trial.debug_logs) console.log("Quick mode ended video");
                         videoPlayer.currentTime = videoPlayer.duration;
                     }
                 };
