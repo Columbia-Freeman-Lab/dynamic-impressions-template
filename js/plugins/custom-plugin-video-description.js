@@ -248,7 +248,7 @@ var jsPsychVideoDescription = (function (jspsych) {
                     if (isDisrupted) {
                         // Don't pause if disrupted
                         return;
-                    } else if (videoPlayer.currentTime - lastPauseTime <= 2) {
+                    } else if (videoPlayer.currentTime - lastPauseTime <= (trial.pause_cooldown / 1000)) {
                         // Don't pause if too early
                         updateNotice("early");
                         // last_pause_time = video_player.currentTime;
