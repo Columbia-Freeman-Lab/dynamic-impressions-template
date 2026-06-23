@@ -263,6 +263,7 @@ export const completionContent = {
         [
             {
                 type: "html",
+                name: "completion",
                 html: "<p>Thank you for participating in the study!</p>",
             }
         ]
