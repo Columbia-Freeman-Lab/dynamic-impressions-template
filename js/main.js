@@ -177,15 +177,12 @@ const startMessageTrial = {
 const videoTrial = {
     type: jsPsychVideoDescription,
     video_path: jsPsych.timelineVariable("video_path"),
-    video_name: jsPsych.timelineVariable("video_name"),
-    video_id: jsPsych.timelineVariable("video_id"),
-    list_name: jsPsych.timelineVariable("list_name"),
     debug_logs: config.DEBUG_LOGS,
     debug_quick: config.DEBUG_QUICK,
     on_start: function (trial) {
         // Parses disruption time if possible
         if (disruptionLookup != null) {
-            const entry = disruptionLookup[trial.video_name.split("/").pop()];
+            const entry = disruptionLookup[trial.video_path.split("/").pop()];
             if (entry) {
                 trial.break_start = utils.parseTimeCode(entry.start);
                 trial.break_end = utils.parseTimeCode(entry.end);
@@ -193,7 +190,12 @@ const videoTrial = {
             }
         }
     },
-    data: { trial_name: "video" }
+    data: {
+        trial_name: "video",
+        video_name: jsPsych.timelineVariable("video_name"),
+        video_id: jsPsych.timelineVariable("video_id"),
+        list_name: jsPsych.timelineVariable("list_name"),
+    }
 };
 
 

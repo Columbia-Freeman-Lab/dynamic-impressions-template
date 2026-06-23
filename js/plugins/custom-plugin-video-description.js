@@ -11,24 +11,6 @@ var jsPsychVideoDescription = (function (jspsych) {
                 default: undefined,
                 description: "The full path to the video."
             },
-            video_name: {
-                type: jspsych.ParameterType.STRING,
-                pretty_name: "Video Name",
-                default: null,
-                description: "The name of the video to be saved in the data output."
-            },
-            video_id: {
-                type: jspsych.ParameterType.INT,
-                pretty_name: "Video ID",
-                default: null,
-                description: "The index of the video within its list (only relevant for Exclusive Index Mode)."
-            },
-            list_name: {
-                type: jspsych.ParameterType.STRING,
-                pretty_name: "List Name",
-                default: null,
-                description: "The name of the list associated with the video."
-            },
             instruction_text: {
                 type: jspsych.ParameterType.HTML_STRING,
                 pretty_name: "Instruction Text",
@@ -134,22 +116,11 @@ var jsPsychVideoDescription = (function (jspsych) {
                     response_state: {
                         type: jspsych.ParameterType.STRING
                     },
-                    /* The name of the video played.
-                       Will be video_path if video_name was not provided */
-                    video: {
-                        type: jspsych.ParameterType.STRING
-                    },
-                    /* The index of the video in the order given before shuffling.
-                       Will be null if video_id not provided */
-                    video_id: {
-                        type: jspsych.ParameterType.STRING
-                    },
-                    /* The name of the list the video is assigned to.
-                       Will be null if list name not provided */
-                    list_name: {
-                        type: jspsych.ParameterType.STRING
-                    },
                 }
+            },
+            /* The path of the video played */
+            video_path: {
+                type: jspsych.ParameterType.STRING
             },
             /* The response time in milliseconds for the participant to complete the trial */
             rt: {
@@ -417,6 +388,7 @@ var jsPsychVideoDescription = (function (jspsych) {
                         let rt = Math.round(performance.now() - startTime);
                         const trial_data = {
                             response: descriptorsData,
+                            video_path: trial.video_path,
                             rt: rt
                         };
                         resolve(trial_data);

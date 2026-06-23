@@ -49,12 +49,12 @@ for file_path in files:
                     "word": entry.get("word"),
                     "timestamp": entry.get("timestamp"),
                     "response_state": entry.get("response_state"),
-                    "video": entry.get("video"),
-                    "video_id": entry.get("video_id"),
-                    "list_name": entry.get("list_name")
+                    "video": row["video_name"],
+                    "video_id": row["video_id"],
+                    "list_name": row["list_name"],
                 })
                 # Update current video (so ratings.csv knows the corresponding video)
-                current_video = entry.get("video")
+                current_video = row["video_name"]
 
         # ratings.csv
         elif trial_name == "ratings":
