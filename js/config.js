@@ -32,7 +32,7 @@ export const config = {
 
 export const videoLists = [
     {
-        condition: "control", // The condition name saved in data
+        listName: "default", // The list name saved in data
         selectionNum: 1, // How many videos to select from this list
         shuffle: false, // Whether to shuffle the order of the videos or not (overriden by SHUFFLE_ALL)
         videos: [

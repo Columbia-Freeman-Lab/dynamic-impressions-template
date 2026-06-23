@@ -179,7 +179,7 @@ const videoTrial = {
     video_path: jsPsych.timelineVariable("video_path"),
     video_name: jsPsych.timelineVariable("video_name"),
     video_id: jsPsych.timelineVariable("video_id"),
-    condition: jsPsych.timelineVariable("condition"),
+    list_name: jsPsych.timelineVariable("list_name"),
     debug_logs: config.DEBUG_LOGS,
     debug_quick: config.DEBUG_QUICK,
     on_start: function (trial) {

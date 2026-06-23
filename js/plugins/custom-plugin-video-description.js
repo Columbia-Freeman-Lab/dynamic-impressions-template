@@ -23,11 +23,11 @@ var jsPsychVideoDescription = (function (jspsych) {
                 default: null,
                 description: "The index of the video within its list (only relevant for Exclusive Index Mode)."
             },
-            condition: {
+            list_name: {
                 type: jspsych.ParameterType.STRING,
-                pretty_name: "Condition",
+                pretty_name: "List Name",
                 default: null,
-                description: "The condition associated with the video."
+                description: "The name of the list associated with the video."
             },
             instruction_text: {
                 type: jspsych.ParameterType.HTML_STRING,
@@ -144,9 +144,9 @@ var jsPsychVideoDescription = (function (jspsych) {
                     video_id: {
                         type: jspsych.ParameterType.STRING
                     },
-                    /* The condition the video is assigned to.
-                       Will be null if condition not provided */
-                    condition: {
+                    /* The name of the list the video is assigned to.
+                       Will be null if list name not provided */
+                    list_name: {
                         type: jspsych.ParameterType.STRING
                     },
                 }
@@ -397,7 +397,7 @@ var jsPsychVideoDescription = (function (jspsych) {
                         response_state: response_state,
                         video: trial.video_name ?? trial.video_path,
                         video_id: trial.video_id,
-                        condition: trial.condition
+                        list_name: trial.list_name
                     }));
                     descriptorsData = descriptorsData.concat(newData);
                     currentTerms = [];

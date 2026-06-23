@@ -51,7 +51,7 @@ for file_path in files:
                     "response_state": entry.get("response_state"),
                     "video": entry.get("video"),
                     "video_id": entry.get("video_id"),
-                    "condition": entry.get("condition")
+                    "list_name": entry.get("list_name")
                 })
                 # Update current video (so ratings.csv knows the corresponding video)
                 current_video = entry.get("video")
