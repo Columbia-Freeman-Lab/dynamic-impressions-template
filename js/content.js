@@ -27,6 +27,18 @@ export const screenerContent = {
     completeText: "Continue",
 };
 
+// --- Traits List ---
+const traits = [
+    // name = name used in data, title = name shown in study, def = definition shown in instructions and tooltips
+    { name: "openness", title: "Open to new experiences", def: "willingness to try new things and to explore new ideas" },
+    { name: "conscientiousness", title: "Conscientious", def: "extent to which the person seems organized, hardworking, and goal-oriented" },
+    { name: "extraversion", title: "Extroverted", def: "extent to which the person seems energized by social interaction and enjoys being around other people" },
+    { name: "agreeableness", title: "Agreeable", def: "extent to which the person seems cooperative, kind, and trusting" },
+    { name: "neuroticism", title: "Neurotic", def: "extent to which the person seems prone to negative emotions such as anxiety, anger, and sadness" },
+    { name: "warmth", title: "Warm", def: "extent to which the person seems friendly, approachable, and likeable" },
+    { name: "competence", title: "Competent", def: "extent to which the person seems capable, skilled, and knowledgeable" },
+];
+
 // --- Instructions ---
 export const instructionsContent = {
     title: "Instructions",
@@ -91,13 +103,7 @@ export const instructionsContent = {
                         <p><b>Please read the category descriptions carefully below:</b></p>
                         <div class="callout-box">
                             <ul>
-                                <li><b>Openness to new experiences:</b> willingness to try new things and to explore new ideas</li>
-                                <li><b>Conscientiousness:</b> extent to which the person seems organized, hardworking, and goal-oriented</li>
-                                <li><b>Extroversion:</b> extent to which the person seems energized by social interaction and enjoys being around other people</li>
-                                <li><b>Agreeableness:</b> extent to which the person seems cooperative, kind, and trusting</li>
-                                <li><b>Neuroticism:</b> extent to which the person seems prone to negative emotions such as anxiety, anger, and sadness</li>
-                                <li><b>Warmth:</b> extent to which the person seems friendly, approachable, and likeable</li>
-                                <li><b>Competence:</b> extent to which the person seems capable, skilled, and knowledgeable</li>
+                                ${traits.map(trait => `<li><b>${trait.title}:</b> ${trait.def}</li>`).join('')}
                             </ul>
                         </div>
                     `
@@ -141,22 +147,11 @@ export const audioCheckContent = {
 
 // --- Rating Impressions ---
 
-// name = name used in data, title = name shown in study
-const traits = [
-    { name: "openness", title: "Open to new experiences" },
-    { name: "conscientiousness", title: "Conscientious" },
-    { name: "extraversion", title: "Extroverted" },
-    { name: "agreeableness", title: "Agreeable" },
-    { name: "neuroticism", title: "Neurotic" },
-    { name: "warmth", title: "Warm" },
-    { name: "competence", title: "Competent" },
-];
-
-// Dynamically builds sliders based on the above list of traits
+// Dynamically builds sliders based on the traits list
 const traitSliders = traits.map(trait => ({
     type: "slider",
     name: trait.name,
-    title: trait.title,
+    title: `${trait.title} <span class="tooltip-wrapper">🛈<span class="tooltip-box">${trait.def}</span></span>`,
     min: 0,
     max: 10,
     defaultValue: 5,
