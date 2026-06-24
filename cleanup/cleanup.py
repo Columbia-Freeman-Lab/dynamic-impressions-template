@@ -20,7 +20,7 @@ files = glob.glob(os.path.join(input_folder, "*_data.csv"))
 for file_path in files:
     # Extract subject_id from filename
     file_name = os.path.basename(file_path)
-    subject_id = file_name.replace("*_data", "").replace(".csv", "")
+    subject_id = file_name.replace("_data.csv", "")
     
     df = pd.read_csv(file_path)
     
