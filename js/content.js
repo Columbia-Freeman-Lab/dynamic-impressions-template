@@ -205,9 +205,9 @@ export const ratingContent = {
 
 // --- Demographics ---
 export const demographicsContent = {
+    title: "Demographics",
     pages: [
         {
-            title: "Demographics",
             elements:
                 [
                     {
