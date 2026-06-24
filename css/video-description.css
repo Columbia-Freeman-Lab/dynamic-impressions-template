@@ -42,6 +42,12 @@
     font-style: normal;
 }
 
+/* Shrink text below video instead of overflowing to second line */
+#video-notice {
+    white-space: nowrap;
+    font-size: clamp(8px, 1.5vw, calc(18px + 0.25vh));
+}
+
 .video-container {
     position: relative;
 }
