@@ -4,8 +4,8 @@ import glob
 import os
 
 # Configuration
-input_folder = "data/"  # Change this to your folder path
-output_folder = "cleaned_data/"
+input_folder = "data"
+output_folder = "cleaned_data"
 os.makedirs(output_folder, exist_ok=True)
 
 # Data containers
@@ -16,6 +16,7 @@ id_key_data = []
 
 # Get all matching CSV files
 files = glob.glob(os.path.join(input_folder, "*_data.csv"))
+print(f"{len(files)} data file(s) found")
 
 for file_path in files:
     # Extract subject_id from filename
@@ -89,9 +90,9 @@ for file_path in files:
             })
 
 # Convert to DataFrames and save
-pd.DataFrame(words_data).to_csv(f"{output_folder}words.csv", index=False)
-pd.DataFrame(ratings_data).to_csv(f"{output_folder}ratings.csv", index=False)
-pd.DataFrame(demographics_data).to_csv(f"{output_folder}demographics.csv", index=False)
-pd.DataFrame(id_key_data).to_csv(f"{output_folder}id_key.csv", index=False)
+pd.DataFrame(words_data).to_csv(f"{output_folder}/words.csv", index=False)
+pd.DataFrame(ratings_data).to_csv(f"{output_folder}/ratings.csv", index=False)
+pd.DataFrame(demographics_data).to_csv(f"{output_folder}/demographics.csv", index=False)
+pd.DataFrame(id_key_data).to_csv(f"{output_folder}/id_key.csv", index=False)
 
 print(f"Cleaning complete. Files saved to {output_folder}")
