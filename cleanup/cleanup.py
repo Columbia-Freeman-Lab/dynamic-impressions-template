@@ -20,9 +20,9 @@ files = glob.glob(os.path.join(input_folder, "*_data.csv"))
 print(f"{len(files)} data file(s) found")
 
 for file_path in files:
-    # Extract subject_id from filename
+    # Extract session_id from filename
     file_name = os.path.basename(file_path)
-    subject_id = file_name.replace("_data.csv", "")
+    session_id = file_name.replace("_data.csv", "")
     
     df = pd.read_csv(file_path)
     
@@ -47,7 +47,7 @@ for file_path in files:
         if trial_name == "video":
             for entry in resp_json:
                 words_data.append({
-                    "subject_id": subject_id,
+                    "session_id": session_id,
                     "word": entry.get("word"),
                     "timestamp": entry.get("timestamp"),
                     "response_state": entry.get("response_state"),
@@ -63,7 +63,7 @@ for file_path in files:
             for trait in resp_json:
                 if trait != "instructions":
                     ratings_data.append({
-                        "subject_id": subject_id,
+                        "session_id": session_id,
                         "trait": trait,
                         "value": resp_json[trait],
                         "video": current_video,
@@ -73,7 +73,7 @@ for file_path in files:
         # demographics.csv
         elif trial_name == "demographics":
             demographics_data.append({
-                "subject_id": subject_id,
+                "session_id": session_id,
                 "age": resp_json.get("age"),
                 "gender": ",".join(resp_json.get("gender", [])) if isinstance(resp_json.get("gender"), list) else resp_json.get("gender"),
                 "race": ",".join(resp_json.get("race", [])) if isinstance(resp_json.get("race"), list) else resp_json.get("race"),
@@ -84,7 +84,7 @@ for file_path in files:
         # id_key.csv
         elif trial_name == "info":
             id_key_data.append({
-                "subject_id": subject_id,
+                "session_id": session_id,
                 "prolific_id": row["prolific_id"],
                 "start_time": row["start_time"],
                 "end_time": row["end_time"]
