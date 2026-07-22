@@ -97,6 +97,11 @@ var jsPsychVideoDescription = (function (jspsych) {
             }
         },
         data: {
+            /* Path of the video played */
+            video: {
+                type: jspsych.ParameterType.STRING
+            },
+            /* Array containing all entered words and associated timestamps */
             response: {
                 type: jspsych.ParameterType.COMPLEX,
                 array: true,
@@ -118,11 +123,7 @@ var jsPsychVideoDescription = (function (jspsych) {
                     },
                 }
             },
-            /* The path of the video played */
-            video_path: {
-                type: jspsych.ParameterType.STRING
-            },
-            /* The response time in milliseconds for the participant to complete the trial */
+            /* Response time in milliseconds for the participant to complete the trial */
             rt: {
                 type: jspsych.ParameterType.INT
             }

@@ -71,7 +71,7 @@ function checkSafari() {
 
 // Get list of videos to show the participant, as provided by utils.js
 const videoTimelineVariables = utils.setupMedia();
-const videoPaths = videoTimelineVariables.map(t => t.video_path);
+const videoPaths = videoTimelineVariables.map(t => t.video);
 if (config.DEBUG_LOGS) {
     console.log("Final video timeline variables:");
     console.log(videoTimelineVariables);
@@ -158,7 +158,7 @@ function checkFullscreen() {
 const demoTrial = {
     type: jsPsychVideoDescription,
     demo: true,
-    video_path: "assets/demo.mp4",
+    video: "assets/demo.mp4",
     demo_text: "<p>Before we start, let's do a practice trial</p><p>Please pause the video and practice entering words</p><p>The study will begin after this practice trial</p>",
     debug_logs: config.DEBUG_LOGS,
     data: { trial_name: "demo" }
@@ -176,13 +176,13 @@ const startMessageTrial = {
 
 const videoTrial = {
     type: jsPsychVideoDescription,
-    video_path: jsPsych.timelineVariable("video_path"),
+    video: jsPsych.timelineVariable("video_path"),
     debug_logs: config.DEBUG_LOGS,
     debug_quick: config.DEBUG_QUICK,
     on_start: function (trial) {
         // Parses disruption time if possible
         if (disruptionLookup != null) {
-            const entry = disruptionLookup[trial.video_path.split("/").pop()];
+            const entry = disruptionLookup[trial.video.split("/").pop()];
             if (entry) {
                 trial.break_start = utils.parseTimeCode(entry.start);
                 trial.break_end = utils.parseTimeCode(entry.end);
@@ -192,7 +192,6 @@ const videoTrial = {
     },
     data: {
         trial_name: "video",
-        video_name: jsPsych.timelineVariable("video_name"),
         video_id: jsPsych.timelineVariable("video_id"),
         list_name: jsPsych.timelineVariable("list_name"),
     }

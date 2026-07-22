@@ -2,6 +2,7 @@ import pandas as pd
 import json
 import glob
 import os
+from pathlib import Path
 
 # Configuration
 input_folder = "data"
@@ -50,7 +51,7 @@ for file_path in files:
                     "word": entry.get("word"),
                     "timestamp": entry.get("timestamp"),
                     "response_state": entry.get("response_state"),
-                    "video": row["video_name"],
+                    "video": Path(row["video"]).stem, #Gets filename from video path
                     "video_id": row["video_id"],
                     "list_name": row["list_name"],
                 })
