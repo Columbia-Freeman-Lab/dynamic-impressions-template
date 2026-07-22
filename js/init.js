@@ -1,5 +1,10 @@
 import { config } from "./config.js";
 
+// Debug warning
+if (config.DEBUG_LOGS || config.DEBUG_SAVE || config.DEBUG_QUICK) {
+    console.log("DEBUG MODE ENABLED");
+}
+
 // Variable to indicate study completion
 let complete = false;
 export function setComplete(value) {
