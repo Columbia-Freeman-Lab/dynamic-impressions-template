@@ -5,19 +5,6 @@ import { config } from "./config.js";
 import * as utils from "./utils.js";
 import * as content from "./content.js";
 
-// Import disruptions.js if it exists
-let disruptionLookup;
-async function loadDisruptions() {
-    try {
-        const module = await import("./disruptions.js");
-        disruptionLookup = module.disruptionLookup;
-    } catch (error) {
-        if (config.DEBUG_LOGS) console.warn("disruptions.js not found");
-        disruptionLookup = null;
-    }
-}
-await loadDisruptions();
-
 const startTime = new Date().toLocaleString(); // Records the date and time at the start of the study
 const timeline = []; // Creates the experiment timeline
 
@@ -179,17 +166,6 @@ const videoTrial = {
     video: jsPsych.timelineVariable("video"),
     debug_logs: config.DEBUG_LOGS,
     debug_quick: config.DEBUG_QUICK,
-    on_start: function (trial) {
-        // Parses disruption time if possible
-        if (disruptionLookup != null) {
-            const entry = disruptionLookup[trial.video.split("/").pop()];
-            if (entry) {
-                trial.break_start = utils.parseTimeCode(entry.start);
-                trial.break_end = utils.parseTimeCode(entry.end);
-                if (config.DEBUG_LOGS) console.log(`Disruption added: ${trial.break_start} to ${trial.break_end}`);
-            }
-        }
-    },
     data: {
         trial_name: "video",
         video_id: jsPsych.timelineVariable("video_id"),

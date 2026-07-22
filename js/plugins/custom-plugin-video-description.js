@@ -59,18 +59,6 @@ var jsPsychVideoDescription = (function (jspsych) {
                 default: 2000,
                 description: "Duration in milliseconds before the video can be paused again after resuming."
             },
-            break_start: {
-                type: jspsych.ParameterType.FLOAT,
-                pretty_name: "Break Start Time (Seconds)",
-                default: null,
-                description: "Time in seconds when the disruption starts."
-            },
-            break_end: {
-                type: jspsych.ParameterType.FLOAT,
-                pretty_name: "Break End Time (Seconds)",
-                default: null,
-                description: "Time in seconds when the disruption ends."
-            },
             demo: {
                 type: jspsych.ParameterType.BOOL,
                 pretty_name: "Demo",
@@ -186,7 +174,6 @@ var jsPsychVideoDescription = (function (jspsych) {
                 let descriptorsData = [];
                 let currentTerms = [];
                 let lastPauseTime = -(trial.pause_cooldown / 1000);
-                let isDisrupted = false;
                 let response_state = "initial"; // initial, during, final
 
                 // Helper function to update video notice text
@@ -217,10 +204,7 @@ var jsPsychVideoDescription = (function (jspsych) {
                 };
 
                 const pauseVideo = () => {
-                    if (isDisrupted) {
-                        // Don't pause if disrupted
-                        return;
-                    } else if (videoPlayer.currentTime - lastPauseTime <= (trial.pause_cooldown / 1000)) {
+                    if (videoPlayer.currentTime - lastPauseTime <= (trial.pause_cooldown / 1000)) {
                         // Don't pause if too early
                         updateNotice("early");
                         // last_pause_time = video_player.currentTime;
@@ -306,17 +290,6 @@ var jsPsychVideoDescription = (function (jspsych) {
                 };
 
                 videoPlayer.ontimeupdate = () => {
-                    if (trial.break_start !== null && trial.break_end !== null) {
-                        const t = videoPlayer.currentTime;
-                        // Check if current time is inside the disruption window
-                        if (t >= trial.break_start && t < trial.break_end) {
-                            if (trial.debug_logs) console.log("Disruption occuring")
-                            isDisrupted = true;
-                        } else {
-                            isDisrupted = false;
-                        }
-                    }
-
                     // End video at 5 seconds if debug_quick is true
                     if (trial.debug_quick && videoPlayer.currentTime >= 5 && videoPlayer.currentTime < videoPlayer.duration) {
                         if (trial.debug_logs) console.log("Quick mode ended video");
