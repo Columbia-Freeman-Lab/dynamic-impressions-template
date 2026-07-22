@@ -5,9 +5,9 @@ var jsPsychVideoDescription = (function (jspsych) {
         name: "video-description-trial",
         version: 1.0,
         parameters: {
-            video_path: {
+            video: {
                 type: jspsych.ParameterType.VIDEO,
-                pretty_name: "Video Path",
+                pretty_name: "Video",
                 default: undefined,
                 description: "The full path to the video."
             },
