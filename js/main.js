@@ -176,7 +176,7 @@ const startMessageTrial = {
 
 const videoTrial = {
     type: jsPsychVideoDescription,
-    video: jsPsych.timelineVariable("video_path"),
+    video: jsPsych.timelineVariable("video"),
     debug_logs: config.DEBUG_LOGS,
     debug_quick: config.DEBUG_QUICK,
     on_start: function (trial) {

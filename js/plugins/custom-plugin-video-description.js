@@ -170,7 +170,7 @@ var jsPsychVideoDescription = (function (jspsych) {
 
                 // Set up video
                 const videoPlayer = display_element.querySelector(".video-player");
-                videoPlayer.src = `${trial.video_path}`;
+                videoPlayer.src = `${trial.video}`;
                 videoPlayer.removeAttribute("controls"); //TODO: Is this necessary??
 
                 // Get elements
@@ -367,9 +367,6 @@ var jsPsychVideoDescription = (function (jspsych) {
                         word: word,
                         timestamp: currentTimestamp,
                         response_state: response_state,
-                        video: trial.video_name ?? trial.video_path,
-                        video_id: trial.video_id,
-                        list_name: trial.list_name
                     }));
                     descriptorsData = descriptorsData.concat(newData);
                     currentTerms = [];
@@ -388,8 +385,8 @@ var jsPsychVideoDescription = (function (jspsych) {
                         window.removeEventListener("keydown", spacebarListener);
                         let rt = Math.round(performance.now() - startTime);
                         const trial_data = {
+                            video: trial.video,
                             response: descriptorsData,
-                            video_path: trial.video_path,
                             rt: rt
                         };
                         resolve(trial_data);
