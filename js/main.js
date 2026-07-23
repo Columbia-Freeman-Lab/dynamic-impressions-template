@@ -19,7 +19,7 @@ document.addEventListener("wheel", function (e) {
 // --- Get Prolific ID from URL ---
 
 const urlParams = new URLSearchParams(window.location.search);
-const prolificID = urlParams.get("participant_id") || "unknown"; // If no Prolific ID is provided in the URL, the ID will be reported as 'unknown'
+const prolificID = urlParams.get("PROLIFIC_PID") || "unknown"; // If no Prolific ID is provided in the URL, the ID will be reported as 'unknown'
 
 
 // --- Safari Warning ---
